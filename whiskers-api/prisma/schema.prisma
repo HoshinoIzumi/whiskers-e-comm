@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  STAFF
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PREPARING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         Role     @default(CUSTOMER)
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  profile       Profile?
+  refreshTokens RefreshToken[]
+  orders        Order[]
+  auditLogs     AuditLog[] @relation("AuditActor")
+
+  @@map("users")
+}
+
+model Profile {
+  id      String  @id @default(uuid())
+  userId  String  @unique @map("user_id")
+  phone   String?
+  address String?
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  tokenHash String   @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+model Category {
+  id       String            @id @default(uuid())
+  name     String
+  slug     String            @unique
+  flavours FlavourCategory[]
+
+  @@map("categories")
+}
+
+model Flavour {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  priceCents  Int      @map("price_cents")
+  isActive    Boolean  @default(true) @map("is_active")
+  imageUrl    String?  @map("image_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  categories FlavourCategory[]
+  menuSlot   MenuSlot?
+  orderItems OrderItem[]
+
+  @@index([isActive])
+  @@map("flavours")
+}
+
+model FlavourCategory {
+  flavourId  String @map("flavour_id")
+  categoryId String @map("category_id")
+  flavour    Flavour  @relation(fields: [flavourId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([flavourId, categoryId])
+  @@map("flavour_categories")
+}
+
+/// Flavours shown on today’s menu, ordered by `sortOrder`.
+model MenuSlot {
+  id        String  @id @default(uuid())
+  flavourId String  @unique @map("flavour_id")
+  sortOrder Int     @map("sort_order")
+  flavour   Flavour @relation(fields: [flavourId], references: [id], onDelete: Cascade)
+
+  @@index([sortOrder])
+  @@map("menu_slots")
+}
+
+model Order {
+  id           String      @id @default(uuid())
+  userId       String?     @map("user_id")
+  guestEmail   String?     @map("guest_email")
+  guestPhone   String?     @map("guest_phone")
+  status       OrderStatus @default(PENDING)
+  totalCents   Int         @map("total_cents")
+  /// Square Order API id returned when creating a payment link (webhook lookup).
+  squareOrderId   String? @unique @map("square_order_id")
+  /// Last Square payment id applied when marking PAID (debugging / support).
+  squarePaymentId String? @map("square_payment_id")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
+
+  user  User?       @relation(fields: [userId], references: [id])
+  items OrderItem[]
+
+  @@index([status])
+  @@index([userId])
+  @@map("orders")
+}
+
+model OrderItem {
+  id             String @id @default(uuid())
+  orderId        String @map("order_id")
+  flavourId      String @map("flavour_id")
+  quantity       Int
+  unitPriceCents Int    @map("unit_price_cents")
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  flavour Flavour @relation(fields: [flavourId], references: [id])
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+/// MVP: structure only — business rules in a later phase.
+model Coupon {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("coupons")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  actorId    String?  @map("actor_id")
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String?  @map("entity_id")
+  metadata   Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  actor User? @relation("AuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([actorId])
+  @@map("audit_logs")
+}
