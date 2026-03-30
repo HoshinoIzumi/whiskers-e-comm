@@ -11,6 +11,8 @@ import FlavoursPage from './pages/FlavoursPage'
 import FlavourDetailsPage from './pages/FlavourDetailsPage'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
+import MenuPage from './pages/MenuPage'
+import OrderOnlinePage from './pages/OrderOnlinePage'
 import LoginPage from './pages/LoginPage'
 import OrdersPage from './pages/OrdersPage'
 import ProfilePage from './pages/ProfilePage'
@@ -59,6 +61,18 @@ function App() {
         <nav className="mx-auto flex max-w-2xl flex-wrap items-center gap-6 px-4 py-3 text-sm font-medium text-foreground/90">
           <Link to={currentLang ? `${prefix}` : '/'} className="hover:text-gelato-blue">
             Home
+          </Link>
+          <Link
+            to={currentLang ? `${prefix}/menu` : '/menu'}
+            className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
+          >
+            Menu
+          </Link>
+          <Link
+            to={currentLang ? `${prefix}/order-online` : '/order-online'}
+            className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
+          >
+            Order Online
           </Link>
           <Link
             to={currentLang ? `${prefix}/today` : '/today'}
@@ -133,6 +147,12 @@ function App() {
             <Route path="/zh" element={<HomePage />} />
             <Route path="/en/about" element={<AboutPage />} />
             <Route path="/zh/about" element={<AboutPage />} />
+            <Route path="/menu" element={<MenuPage />} />
+            <Route path="/en/menu" element={<MenuPage />} />
+            <Route path="/zh/menu" element={<MenuPage />} />
+            <Route path="/order-online" element={<OrderOnlinePage />} />
+            <Route path="/en/order-online" element={<OrderOnlinePage />} />
+            <Route path="/zh/order-online" element={<OrderOnlinePage />} />
             <Route path="/en/today" element={<TodayMenuPage />} />
             <Route path="/zh/today" element={<TodayMenuPage />} />
             <Route path="/en/flavours" element={<FlavoursPage />} />
