@@ -10,6 +10,7 @@ import TodayMenuPage from './pages/TodayMenuPage'
 import FlavoursPage from './pages/FlavoursPage'
 import FlavourDetailsPage from './pages/FlavourDetailsPage'
 import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
 import OrdersPage from './pages/OrdersPage'
 import ProfilePage from './pages/ProfilePage'
@@ -48,27 +49,27 @@ function App() {
   }, [authMe.isError, clearSession])
 
   return (
-    <div className="min-h-svh bg-stone-50 dark:bg-stone-950">
-      <header className="border-b border-stone-200 bg-white/80 backdrop-blur dark:border-stone-800 dark:bg-stone-900/80">
-        <nav className="mx-auto flex max-w-2xl flex-wrap items-center gap-6 px-4 py-3 text-sm font-medium text-stone-700 dark:text-stone-200">
-          <Link to="/" className="hover:text-amber-700 dark:hover:text-amber-400">
+    <div className="min-h-svh bg-background text-foreground">
+      <header className="border-b border-border bg-white/70 backdrop-blur">
+        <nav className="mx-auto flex max-w-2xl flex-wrap items-center gap-6 px-4 py-3 text-sm font-medium text-foreground/90">
+          <Link to="/" className="hover:text-gelato-blue">
             Home
           </Link>
           <Link
             to="/today"
-            className="hover:text-amber-700 dark:hover:text-amber-400"
+            className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
           >
             Today
           </Link>
           <Link
             to="/flavours"
-            className="hover:text-amber-700 dark:hover:text-amber-400"
+            className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
           >
             Flavours
           </Link>
           <Link
             to="/cart"
-            className="hover:text-amber-700 dark:hover:text-amber-400"
+            className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
           >
             Cart
           </Link>
@@ -76,20 +77,20 @@ function App() {
             <>
               <Link
                 to="/orders"
-                className="hover:text-amber-700 dark:hover:text-amber-400"
+                className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
               >
                 Orders
               </Link>
               <Link
                 to="/profile"
-                className="hover:text-amber-700 dark:hover:text-amber-400"
+                className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
               >
                 Profile
               </Link>
               {(user.role === 'STAFF' || user.role === 'ADMIN') && (
                 <Link
                   to="/admin"
-                  className="hover:text-amber-700 dark:hover:text-amber-400"
+                  className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
                 >
                   Admin
                 </Link>
@@ -100,7 +101,7 @@ function App() {
                   await logout()
                   navigate('/')
                 }}
-                className="hover:text-amber-700 dark:hover:text-amber-400"
+                className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
               >
                 Logout
               </button>
@@ -108,7 +109,7 @@ function App() {
           ) : (
             <Link
               to="/login"
-              className="hover:text-amber-700 dark:hover:text-amber-400"
+              className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
             >
               Login
             </Link>
@@ -123,6 +124,71 @@ function App() {
         ) : (
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/en" element={<HomePage />} />
+            <Route path="/zh" element={<HomePage />} />
+            <Route path="/en/about" element={<AboutPage />} />
+            <Route path="/zh/about" element={<AboutPage />} />
+            <Route path="/en/today" element={<TodayMenuPage />} />
+            <Route path="/zh/today" element={<TodayMenuPage />} />
+            <Route path="/en/flavours" element={<FlavoursPage />} />
+            <Route path="/zh/flavours" element={<FlavoursPage />} />
+            <Route path="/en/flavours/:id" element={<FlavourDetailsPage />} />
+            <Route path="/zh/flavours/:id" element={<FlavourDetailsPage />} />
+            <Route path="/en/cart" element={<CartPage />} />
+            <Route path="/zh/cart" element={<CartPage />} />
+            <Route path="/en/checkout" element={<CheckoutPage />} />
+            <Route path="/zh/checkout" element={<CheckoutPage />} />
+            <Route path="/en/checkout/success" element={<CheckoutSuccessPage />} />
+            <Route path="/zh/checkout/success" element={<CheckoutSuccessPage />} />
+            <Route path="/en/login" element={<LoginPage />} />
+            <Route
+              path="/en/orders"
+              element={
+                <AuthGate>
+                  <OrdersPage />
+                </AuthGate>
+              }
+            />
+            <Route
+              path="/zh/orders"
+              element={
+                <AuthGate>
+                  <OrdersPage />
+                </AuthGate>
+              }
+            />
+            <Route
+              path="/en/profile"
+              element={
+                <AuthGate>
+                  <ProfilePage />
+                </AuthGate>
+              }
+            />
+            <Route
+              path="/zh/profile"
+              element={
+                <AuthGate>
+                  <ProfilePage />
+                </AuthGate>
+              }
+            />
+            <Route
+              path="/en/admin"
+              element={
+                <AuthGate roles={['STAFF', 'ADMIN']}>
+                  <AdminPage />
+                </AuthGate>
+              }
+            />
+            <Route
+              path="/zh/admin"
+              element={
+                <AuthGate roles={['STAFF', 'ADMIN']}>
+                  <AdminPage />
+                </AuthGate>
+              }
+            />
             <Route path="/today" element={<TodayMenuPage />} />
             <Route path="/flavours" element={<FlavoursPage />} />
             <Route path="/flavours/:id" element={<FlavourDetailsPage />} />

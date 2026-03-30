@@ -1,0 +1,427 @@
+{
+  "site": {
+    "shopName": "Whiskers Gelato",
+    "tagline": "Freshly churned happiness.",
+    "address": "8 Little Hay St, Haymarket NSW 2000",
+    "hours": {
+      "tue_thu": "14:00 - 21:00",
+      "fri_sat": "14:00 - 22:00",
+      "sun": "14:00 - 21:00",
+      "mon": "Closed"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "flavours": "Flavours",
+    "visit": "Visit"
+  },
+  "home": {
+    "badge": "Artisan Gelato",
+    "tagline": "Freshly churned happiness, with a touch of magic and a whole lot of heart.",
+    "fridge_alt": "Whiskers Gelato Fridge",
+    "explore_btn": "Explore Flavours",
+    "visit_btn": "Visit Shop"
+  },
+  "flavours": {
+    "title": "Flavours",
+    "subtitle": "Menu is constantly updated, we will rotate different flavours every week.",
+    "labels": {
+      "allergy_notice": "Allergy Notice"
+    },
+    "categories": {
+      "signature": {
+        "title": "Signature",
+        "sticker": "/images/stickers/cat-cuddle.svg"
+      },
+      "classic": {
+        "title": "Classic",
+        "sticker": "/images/stickers/gelato.svg"
+      },
+      "premium": {
+        "title": "Premium",
+        "price_suffix": "+$2",
+        "sticker": "/images/stickers/cat-yummy.svg"
+      },
+      "sorbet": {
+        "title": "Sorbet",
+        "sticker": "/images/stickers/cat-wash-fruits.svg"
+      }
+    },
+    "list": [
+      {
+        "title": "Jasmine maojian Green Tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Yunnan Black Tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Dahongpao Rock Tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Oolong Tea & Peach",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Rose Osmanthus Green Tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Golden Brick Tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Tangerine Puer",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Puer Tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "Caramel Pumpkin",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Salted Caramel",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Butter Cookie & Caramel",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Fudge and Cream Cheese",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Panettone",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Macadamia",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Coffee Latte",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Red Bean",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Pistachio",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Roasted Sweet Potato",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Soy Milk",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Tomato & Mascarpone Cheese",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Szechuan pepper",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "mandarin grapefruit",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Lychee Mint",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Watermelon Mint",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Strawberry Yakult",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Persimmon",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Pinapple passionfruit",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Mango passionfruit",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Golden kiwi and black tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Premium Grapes",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet", "premium"]
+      },
+      {
+        "title": "Jasmine Grapes",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Mixed Berries",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Peach",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Pina Colada",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Mulberry",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet", "premium"]
+      },
+      {
+        "title": "Bayberry",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Granny Smith & Honeydew Melon",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Rum & Raisin",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Maotai",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Durian",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Fig & Whisky",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Baileys",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Cherry",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Matcha",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Guava & Melon",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Tiramisu",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "Belgium Chocolate",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "Mango",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "Crispy Rice Salty Milk Tea",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      }
+    ],
+    "today_list": [
+      "Tomato & Mascarpone Cheese",
+      "Butter Cookie & Caramel",
+      "Yunnan Black Tea",
+      "Belgium Chocolate",
+      "Jasmine maojian Green Tea",
+      "Dahongpao Rock Tea",
+      "Fudge and Cream Cheese",
+      "Fig & Whisky",
+      "Mango",
+      "Lychee Mint",
+      "Crispy Rice Salty Milk Tea"
+    ]
+  },
+  "social": {
+    "title": "Social",
+    "subtitle": "Join our community for daily churns and sweet updates",
+    "instagram": {
+      "title": "Instagram",
+      "handle": "@whiskersgelato",
+      "btn": "Follow Us →"
+    },
+    "rednote": {
+      "title": "RedNote",
+      "subtitle": "@WhiskersGelato",
+      "btn": "Explore →"
+    }
+  },
+  "menu": {
+    "title": "Our Menu",
+    "alt": "Whiskers Gelato Menu",
+    "sticker_alt": "Cat Cuddle Sticker"
+  },
+  "visit": {
+    "title": "Visit Us",
+    "subtitle": "Come say hi and grab a scoop of your favorite gelato!",
+    "address_label": "Address",
+    "hours_label": "Opening Hours",
+    "location_desc": "Located in the heart of Haymarket, just a short walk from Central Station.",
+    "map_title": "Google Maps Location",
+    "map_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.4300729807064!2d151.2043431!3d-33.878575999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12af0010010c8f%3A0xde8fe27fe8469cde!2sWhiskers%20Gelato!5e0!3m2!1sen!2sau!4v1772433447834!5m2!1sen!2sau",
+    "days": {
+      "tue_thu": "Tue - Thu",
+      "fri_sat": "Fri - Sat",
+      "sun": "Sun",
+      "mon": "Mon"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Whiskers Gelato. All rights reserved."
+  },
+  "admin": {
+    "title": "Staff Portal",
+    "subtitle": "Update our rotational flavours",
+    "save_btn": "Update",
+    "saving": "Syncing...",
+    "success": "Updated successfully! Meow~",
+    "error": "Update failed: ",
+    "loading": "Checking permissions...",
+    "create": {
+      "btn": "Add New Flavour",
+      "submit": "Create Flavour",
+      "cancel": "Cancel",
+      "title_en": "Name (EN) *",
+      "title_zh": "Name (ZH) *",
+      "description_en": "Description (EN)",
+      "description_zh": "Description (ZH)",
+      "allergy_en": "Allergy Notice (EN)",
+      "allergy_zh": "Allergy Notice (ZH)",
+      "categories": "Categories (at least one) *",
+      "success": "New flavour created successfully!",
+      "error": "Failed to create flavour"
+    },
+    "login": {
+      "name_placeholder": "Username",
+      "pass_placeholder": "Password",
+      "btn": "Confirm",
+      "security_text": "Whiskers Gelato Admin Portal"
+    }
+  }
+}

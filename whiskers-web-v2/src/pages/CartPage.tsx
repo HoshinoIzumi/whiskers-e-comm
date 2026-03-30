@@ -16,15 +16,15 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-lg px-4 py-10">
-      <h1 className="text-2xl font-semibold text-stone-900 dark:text-stone-100">
+      <h1 className="text-2xl font-semibold text-gelato-deep">
         Cart
       </h1>
       {items.length === 0 ? (
-        <p className="mt-6 text-stone-600 dark:text-stone-400">
+        <p className="mt-6 text-foreground/70">
           Your cart is empty.{' '}
           <Link
             to="/today"
-            className="font-medium text-amber-700 underline-offset-2 hover:underline dark:text-amber-400"
+            className="font-medium text-gelato-deep underline-offset-2 hover:underline"
           >
             Browse today’s menu
           </Link>
@@ -35,13 +35,13 @@ export default function CartPage() {
             {items.map((line) => (
               <li
                 key={line.flavourId}
-                className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-stone-200 px-4 py-3 dark:border-stone-700"
+                className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-border/80 bg-white/55 px-4 py-3 shadow-sm backdrop-blur"
               >
                 <div>
-                  <p className="font-medium text-stone-900 dark:text-stone-100">
+                  <p className="font-medium text-foreground">
                     {line.name}
                   </p>
-                  <p className="text-sm text-stone-500">
+                  <p className="text-sm text-foreground/60">
                     {formatUsd(line.unitPriceCents)} each
                   </p>
                 </div>
@@ -53,7 +53,7 @@ export default function CartPage() {
                     id={`qty-${line.flavourId}`}
                     type="number"
                     min={1}
-                    className="w-16 rounded border border-stone-300 bg-white px-2 py-1 text-sm dark:border-stone-600 dark:bg-stone-900"
+                    className="w-16 rounded-xl border border-border/80 bg-white/60 px-2 py-1 text-sm backdrop-blur"
                     value={line.quantity}
                     onChange={(e) =>
                       setQuantity(line.flavourId, Number(e.target.value) || 0)
@@ -61,7 +61,7 @@ export default function CartPage() {
                   />
                   <button
                     type="button"
-                    className="text-sm text-red-600 hover:underline dark:text-red-400"
+                    className="text-sm text-red-600 hover:underline"
                     onClick={() => remove(line.flavourId)}
                   >
                     Remove
@@ -70,17 +70,17 @@ export default function CartPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex items-center justify-between border-t border-stone-200 pt-4 dark:border-stone-700">
-            <span className="font-medium text-stone-800 dark:text-stone-200">
+          <div className="mt-8 flex items-center justify-between border-t border-border/80 pt-4">
+            <span className="font-medium text-foreground">
               Total
             </span>
-            <span className="text-lg font-semibold tabular-nums text-stone-900 dark:text-stone-100">
+            <span className="text-lg font-semibold tabular-nums text-foreground">
               {formatUsd(total)}
             </span>
           </div>
           <Link
             to="/checkout"
-            className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-amber-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-500"
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gelato-deep px-4 py-3 text-sm font-semibold text-gelato-cream shadow-sm transition hover:brightness-95"
           >
             Checkout
           </Link>

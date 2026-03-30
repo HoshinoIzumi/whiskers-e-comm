@@ -1,0 +1,427 @@
+{
+  "site": {
+    "shopName": "Whiskers Gelato",
+    "tagline": "每日新鲜制作的快乐。",
+    "address": "8 Little Hay St, Sydney NSW 2000",
+    "hours": {
+      "tue_thu": "14:00 - 21:00",
+      "fri_sat": "14:00 - 22:00",
+      "sun": "14:00 - 21:00",
+      "mon": "店休"
+    }
+  },
+  "nav": {
+    "home": "首页",
+    "menu": "精选菜单",
+    "flavours": "特色口味",
+    "visit": "到店访问"
+  },
+  "home": {
+    "badge": "匠心手作冰淇淋",
+    "tagline": "每日新鲜制作的快乐，伴随一丝魔法和全心诚意。",
+    "fridge_alt": "Whiskers Gelato 冰箱",
+    "explore_btn": "探索口味",
+    "visit_btn": "到店品尝"
+  },
+  "flavours": {
+    "title": "口味合集",
+    "subtitle": "菜单持续更新中，我们会每周轮换不同的口味。",
+    "labels": {
+      "allergy_notice": "致敏提示"
+    },
+    "categories": {
+      "signature": {
+        "title": "招牌系列",
+        "sticker": "/images/stickers/cat-cuddle.svg"
+      },
+      "classic": {
+        "title": "经典系列",
+        "sticker": "/images/stickers/gelato.svg"
+      },
+      "premium": {
+        "title": "臻选系列",
+        "price_suffix": "+$2",
+        "sticker": "/images/stickers/cat-yummy.svg"
+      },
+      "sorbet": {
+        "title": "雪葩",
+        "sticker": "/images/stickers/cat-wash-fruits.svg"
+      }
+    },
+    "list": [
+      {
+        "title": "茉莉毛尖",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "古树滇红",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "大红袍",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "蜜桃鸭屎香",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "玫瑰桂花绿茶",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "金花茯砖",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "青柑普洱",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "普洱",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      },
+      {
+        "title": "焦糖南瓜",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "焦糖海盐",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "黄油曲奇焦糖",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "大白兔",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "潘纳托尼",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "夏威夷果",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "咖啡",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "红豆",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "开心果",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "烤红薯",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "浓香豆乳",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "黄番茄马斯卡彭",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "青红花椒",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "橘子葡萄柚",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "荔枝薄荷",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "西瓜薄荷",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "草莓养乐多",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "柿子",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "菠萝百香果",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "芒果百香果",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "黄金猕猴桃滇红",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "巨峰葡萄",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet", "premium"]
+      },
+      {
+        "title": "茉莉青提",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "综合莓果",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "蜜桃",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "椰林飘香",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "桑葚",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet", "premium"]
+      },
+      {
+        "title": "杨梅",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "青苹蜜瓜",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "朗姆金提",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "茅台",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "榴莲",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "无花果威士忌",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "百利甜酒",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "车厘子",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "抹茶",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "番石榴蜜瓜",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "提拉米苏",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["premium"]
+      },
+      {
+        "title": "比利时黑巧",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["classic"]
+      },
+      {
+        "title": "芒果",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["sorbet"]
+      },
+      {
+        "title": "脆香米咸奶茶",
+        "description": "description sample",
+        "allergy_notice": "",
+        "categories": ["signature"]
+      }
+    ],
+    "today_list": [
+      "黄番茄马斯卡彭",
+      "黄油曲奇焦糖",
+      "古树滇红",
+      "比利时黑巧",
+      "茉莉毛尖",
+      "大红袍",
+      "大白兔",
+      "无花果威士忌",
+      "芒果",
+      "荔枝薄荷",
+      "脆香米咸奶茶"
+    ]
+  },
+  "social": {
+    "title": "社交媒体",
+    "subtitle": "探索更多口味灵感",
+    "wechat": {
+      "title": "微信",
+      "subtitle": "WeChat",
+      "btn": "即将上线"
+    },
+    "xhs": {
+      "title": "小红书",
+      "subtitle": "@WhiskersGelato",
+      "btn": "去看看 →"
+    }
+  },
+  "menu": {
+    "title": "精选菜单",
+    "alt": "Whiskers Gelato 菜单",
+    "sticker_alt": "可爱猫咪贴纸"
+  },
+  "visit": {
+    "title": "来店里尝尝味道",
+    "subtitle": "看看今天有没有出乎意料的口味呢",
+    "address_label": "详细地址",
+    "hours_label": "营业时间",
+    "location_desc": "位于 Haymarket 中心地带，距离中央火车站（Central Station）仅几步之遥。",
+    "map_title": "Google 地图位置",
+    "map_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.430246898752!2d151.20176817577723!3d-33.87857151956506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12af0010010c8f%3A0xde8fe27fe8469cde!2sWhiskers%20Gelato!5e0!3m2!1szh-CN!2sau!4v1772432713695!5m2!1szh-CN!2sau",
+    "days": {
+      "tue_thu": "周二至周四",
+      "fri_sat": "周五至周六",
+      "sun": "周日",
+      "mon": "周一"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Whiskers Gelato. 保留所有权利。"
+  },
+  "admin": {
+    "title": "店员专属",
+    "subtitle": "更改今日供应 + 添加新口味",
+    "save_btn": "更新今日供应",
+    "saving": "正在同步...",
+    "success": "更新成功！喵~",
+    "error": "更新失败：",
+    "loading": "正在检查权限...",
+    "create": {
+      "btn": "添加新口味",
+      "submit": "创建新口味",
+      "cancel": "取消",
+      "title_en": "英文名称 *",
+      "title_zh": "中文名称 *",
+      "description_en": "英文描述",
+      "description_zh": "中文描述",
+      "allergy_en": "英文致敏提示",
+      "allergy_zh": "中文致敏提示",
+      "categories": "分类 (至少选一个) *",
+      "success": "新口味创建成功！",
+      "error": "创建新口味失败"
+    },
+    "login": {
+      "name_placeholder": "用户名",
+      "pass_placeholder": "密码",
+      "btn": "登录",
+      "security_text": "Whiskers Gelato"
+    }
+  }
+}
