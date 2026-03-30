@@ -23,10 +23,10 @@ export default function CartPage() {
         <p className="mt-6 text-stone-600 dark:text-stone-400">
           Your cart is empty.{' '}
           <Link
-            to="/flavours"
+            to="/today"
             className="font-medium text-amber-700 underline-offset-2 hover:underline dark:text-amber-400"
           >
-            Browse flavours
+            Browse today’s menu
           </Link>
         </p>
       ) : (

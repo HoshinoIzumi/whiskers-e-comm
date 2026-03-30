@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Patch,
+  ParseUUIDPipe,
   Query,
   UseGuards,
 } from '@nestjs/common';
@@ -13,6 +14,12 @@ import { AuditService } from '../audit/audit.service';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
+import {
+  CurrentUser,
+  type AuthUser,
+} from '../common/decorators/current-user.decorator';
+import { OrdersService } from '../orders/orders.service';
+import { UpdateOrderStatusDto } from '../orders/dto/update-order-status.dto';
 import { UsersService } from '../users/users.service';
 import { AdminUpdateUserDto, PaginationQueryDto } from './dto/admin.dto';
 
@@ -22,6 +29,7 @@ export class AdminController {
   constructor(
     private readonly users: UsersService,
     private readonly audit: AuditService,
+    private readonly orders: OrdersService,
   ) {}
 
   @Get('users')
@@ -64,5 +72,29 @@ export class AdminController {
       data: items,
       meta: { page, limit, total, totalPages: Math.ceil(total / limit) },
     };
+  }
+
+  @Get('orders')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.STAFF, Role.ADMIN)
+  @ApiBearerAuth()
+  async listOrders(@Query() query: PaginationQueryDto) {
+    return this.orders.listOrdersForAdmin(query);
+  }
+
+  @Patch('orders/:id/status')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.STAFF, Role.ADMIN)
+  @ApiBearerAuth()
+  async updateOrderStatus(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdateOrderStatusDto,
+    @CurrentUser() user: AuthUser,
+  ) {
+    return this.orders.updateOrderStatus({
+      orderId: id,
+      to: dto.status,
+      actorId: user.id,
+    });
   }
 }

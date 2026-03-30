@@ -8,20 +8,37 @@ import {
   HttpCode,
   InternalServerErrorException,
   Param,
+  Query,
   ParseUUIDPipe,
   Post,
   Req,
+  UseGuards,
   type RawBodyRequest,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
 import { CreateOrderDto } from './dto/orders.dto';
+import { OrdersPaginationQueryDto } from './dto/orders-pagination.dto';
 import { OrdersService } from './orders.service';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import {
+  CurrentUser,
+  type AuthUser,
+} from '../common/decorators/current-user.decorator';
 
 @ApiTags('orders')
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly orders: OrdersService) {}
+
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  listMyOrders(
+    @CurrentUser() user: AuthUser,
+    @Query() query: OrdersPaginationQueryDto,
+  ) {
+    return this.orders.listOrdersForUser(user.id, query);
+  }
 
   @Post('webhook')
   @HttpCode(200)

@@ -14,9 +14,11 @@ import {
   computeOrderTotalCents,
   isSuccessfulSquarePaymentStatus,
 } from '../domain/order-domain';
+import { AuditService } from '../audit/audit.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import { SquareClientProvider } from './square.client';
+import type { OrdersPaginationQueryDto } from './dto/orders-pagination.dto';
 
 const WEBHOOK_EVENT_TTL_SEC = 60 * 60 * 24 * 30; // 30 days
 
@@ -44,10 +46,128 @@ export class OrdersService {
 
   constructor(
     private readonly prisma: PrismaService,
+    private readonly audit: AuditService,
     private readonly redis: RedisService,
     private readonly squareProvider: SquareClientProvider,
     private readonly config: ConfigService,
   ) {}
+
+  private readonly orderListSelect = {
+    id: true,
+    status: true,
+    totalCents: true,
+    createdAt: true,
+    userId: true,
+    guestEmail: true,
+    guestPhone: true,
+    user: { select: { email: true } },
+    items: {
+      select: {
+        quantity: true,
+        unitPriceCents: true,
+        flavour: { select: { name: true } },
+      },
+    },
+  } as const;
+
+  async listOrdersForUser(userId: string, query: OrdersPaginationQueryDto) {
+    const page = query.page ?? 1;
+    const limit = query.limit ?? 20;
+    const skip = (page - 1) * limit;
+
+    const [orders, total] = await Promise.all([
+      this.prisma.order.findMany({
+        where: { userId },
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+        select: this.orderListSelect,
+      }),
+      this.prisma.order.count({ where: { userId } }),
+    ]);
+
+    return {
+      data: orders,
+      meta: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit) || 1,
+      },
+    };
+  }
+
+  async listOrdersForAdmin(query: OrdersPaginationQueryDto) {
+    const page = query.page ?? 1;
+    const limit = query.limit ?? 20;
+    const skip = (page - 1) * limit;
+
+    const [orders, total] = await Promise.all([
+      this.prisma.order.findMany({
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+        select: this.orderListSelect,
+      }),
+      this.prisma.order.count(),
+    ]);
+
+    return {
+      data: orders,
+      meta: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit) || 1,
+      },
+    };
+  }
+
+  async updateOrderStatus(params: {
+    orderId: string;
+    to: OrderStatus;
+    actorId: string;
+  }) {
+    const { orderId, to, actorId } = params;
+
+    const allowed = new Set<OrderStatus>([
+      OrderStatus.PREPARING,
+      OrderStatus.READY,
+      OrderStatus.COMPLETED,
+      OrderStatus.CANCELLED,
+    ]);
+    if (!allowed.has(to)) {
+      throw new BadRequestException('Invalid status transition target');
+    }
+
+    const order = await this.prisma.order.findUnique({
+      where: { id: orderId },
+      select: { id: true, status: true },
+    });
+    if (!order) throw new NotFoundException('Order not found');
+
+    if (!canTransition(order.status, to)) {
+      throw new BadRequestException(
+        `Cannot transition order ${order.id} from ${order.status} to ${to}`,
+      );
+    }
+
+    const updated = await this.prisma.order.update({
+      where: { id: orderId },
+      data: { status: to },
+      select: this.orderListSelect,
+    });
+
+    await this.audit.log({
+      actorId,
+      action: 'order.update_status',
+      entityType: 'Order',
+      entityId: orderId,
+      metadata: { from: order.status, to },
+    });
+
+    return updated;
+  }
 
   async createOrder(dto: {
     items: { flavourId: string; quantity: number }[];
