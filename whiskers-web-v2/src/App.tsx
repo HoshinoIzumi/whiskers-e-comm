@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { getMe } from './lib/api'
 import { useAuthStore } from './stores/authStore'
 import CartPage from './pages/CartPage'
@@ -19,6 +19,7 @@ import AuthGate from './components/AuthGate'
 import { useNavigate } from 'react-router-dom'
 
 function App() {
+  const location = useLocation()
   const navigate = useNavigate()
 
   const accessToken = useAuthStore((s) => s.accessToken)
@@ -37,6 +38,10 @@ function App() {
 
   const isHydrating = !!accessToken && !user && authMe.isPending
 
+  const currentLang =
+    location.pathname.startsWith('/zh') ? 'zh' : location.pathname.startsWith('/en') ? 'en' : null
+  const prefix = currentLang ? `/${currentLang}` : ''
+
   useEffect(() => {
     if (!authMe.data) return
     if (!accessToken) return
@@ -52,23 +57,23 @@ function App() {
     <div className="min-h-svh bg-background text-foreground">
       <header className="border-b border-border bg-white/70 backdrop-blur">
         <nav className="mx-auto flex max-w-2xl flex-wrap items-center gap-6 px-4 py-3 text-sm font-medium text-foreground/90">
-          <Link to="/" className="hover:text-gelato-blue">
+          <Link to={currentLang ? `${prefix}` : '/'} className="hover:text-gelato-blue">
             Home
           </Link>
           <Link
-            to="/today"
+            to={currentLang ? `${prefix}/today` : '/today'}
             className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
           >
             Today
           </Link>
           <Link
-            to="/flavours"
+            to={currentLang ? `${prefix}/flavours` : '/flavours'}
             className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
           >
             Flavours
           </Link>
           <Link
-            to="/cart"
+            to={currentLang ? `${prefix}/cart` : '/cart'}
             className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
           >
             Cart
@@ -76,20 +81,20 @@ function App() {
           {user ? (
             <>
               <Link
-                to="/orders"
+                to={currentLang ? `${prefix}/orders` : '/orders'}
                 className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
               >
                 Orders
               </Link>
               <Link
-                to="/profile"
+                to={currentLang ? `${prefix}/profile` : '/profile'}
                 className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
               >
                 Profile
               </Link>
               {(user.role === 'STAFF' || user.role === 'ADMIN') && (
                 <Link
-                  to="/admin"
+                  to={currentLang ? `${prefix}/admin` : '/admin'}
                   className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
                 >
                   Admin
@@ -99,7 +104,7 @@ function App() {
                 type="button"
                 onClick={async () => {
                   await logout()
-                  navigate('/')
+                  navigate(currentLang ? `${prefix}` : '/')
                 }}
                 className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
               >
@@ -108,7 +113,7 @@ function App() {
             </>
           ) : (
             <Link
-              to="/login"
+              to={currentLang ? `${prefix}/login` : '/login'}
               className="rounded-full px-3 py-1 hover:bg-gelato-blue/10 hover:text-gelato-blue"
             >
               Login

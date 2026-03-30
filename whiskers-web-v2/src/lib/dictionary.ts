@@ -9,7 +9,22 @@ export type HomeDictionary = {
   }
 }
 
-export type Dictionary = HomeDictionary & {
+export type FlavoursDictionary = {
+  flavours: {
+    title: string
+    subtitle: string
+    labels?: {
+      allergy_notice?: string
+    }
+    categories: Record<
+      string,
+      { title: string; sticker: string; price_suffix?: string }
+    >
+  }
+}
+
+export type Dictionary = HomeDictionary &
+  FlavoursDictionary & {
   site?: {
     shopName?: string
     tagline?: string
@@ -17,6 +32,7 @@ export type Dictionary = HomeDictionary & {
     hours?: Record<string, string>
   }
 }
+
 
 export async function getDictionary(lang: DictionaryLang): Promise<Dictionary> {
   const res = await fetch(`/dictionaries/${lang}.json`)

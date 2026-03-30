@@ -105,6 +105,13 @@ export async function getFlavour(id: string): Promise<Flavour> {
   return data
 }
 
+export type Category = { id: string; name: string; slug: string }
+
+export async function getCategories(): Promise<Category[]> {
+  const { data } = await api.get<Category[]>('/categories')
+  return data
+}
+
 export async function getTodayMenu(): Promise<Flavour[]> {
   const { data } = await api.get<Flavour[]>('/flavours/today')
   return data
