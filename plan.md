@@ -8,15 +8,15 @@
 
 ### MVP（必须做）
 
-- **商品浏览**：口味列表 / 详情 / 分类
-- **今日菜单**：公开可访问
-- **购物车**：增删改数量 + 价格计算
-- **下单（仅 Guest Checkout）**：匿名创建订单（收集 email / phone）
-- **支付（Square Sandbox）**：创建支付 / 跳转支付 / webhook 回调更新订单为 PAID
-- **基础管理端（Staff+）**：
-  - 口味 CRUD
-  - 今日菜单设置（上架/下架 + 排序）
-  - 订单列表 + 状态更新（PREPARING/READY/COMPLETED/CANCELLED）
+- [x] **商品浏览**：口味列表 / 详情 / 分类
+- [x] **今日菜单**：公开可访问
+- [x] **购物车**：增删改数量 + 价格计算
+- [x] **下单（仅 Guest Checkout）**：匿名创建订单（收集 email / phone）
+- [x] **支付（Square Sandbox）**：创建支付 / 跳转支付 / webhook 回调更新订单为 PAID
+- [x] **基础管理端（Staff+）**：
+  - [x] 口味 CRUD
+  - [x] 今日菜单设置（上架/下架 + 排序）
+  - [x] 订单列表 + 状态更新（PREPARING/READY/COMPLETED/CANCELLED）
 - **部署上线**：Docker + Nginx + Lightsail（含 HTTPS）
 
 ### 非 MVP（先不做 / 后续增强）
@@ -80,18 +80,18 @@ whiskers-e-comm/
 
 ### 3.1 Repo/工程初始化
 
-- 创建目录：`whiskers-api/`、`whiskers-web-v2/`
-- 后端初始化（NestJS）
-- 前端初始化（Vite React-TS）
-- 代码质量：ESLint/Prettier/TypeScript 配置（前后端各自）
-- 在根目录准备 `docker-compose.yml`（postgres + redis）
+- [x] 创建目录：`whiskers-api/`、`whiskers-web-v2/`
+- [x] 后端初始化（NestJS）
+- [x] 前端初始化（Vite React-TS）
+- [x] 代码质量：ESLint/Prettier/TypeScript 配置（前后端各自）
+- [x] 在根目录准备 `docker-compose.yml`（postgres + redis）
 
 ### 3.2 验收标准
 
-- `docker compose up` 后 Postgres/Redis 正常运行
-- Prisma 能连上数据库
-- 后端能响应 `/api/health`
-- 前端能启动并展示占位首页
+- [x] `docker compose up` 后 Postgres/Redis 正常运行
+- [x] Prisma 能连上数据库
+- [x] 后端能响应 `/api/health`
+- [x] 前端能启动并展示占位首页
 
 ---
 
@@ -191,15 +191,15 @@ Redis 使用（明确写在实现中）：
 
 > 这一步的目标是把“最核心、最容易翻车”的规则先固定下来，避免后续接入 Square webhook 时一边联调一边改规则。
 
-- **OrderTotal 计算**（单元测试）
-  - items 合计：\u2211 price \u00d7 quantity
-  - quantity 规则：必须为正整数
-  - price 规则：来自服务端 Flavour 当前价格（不信任前端传入）
-  - coupon 扩展点（如果暂不做 coupon：先写 TODO 测试用例占位即可）
-- **订单状态机**（单元测试）
-  - 允许：PENDING->PAID->PREPARING->READY->COMPLETED
-  - 允许：任意状态 -> CANCELLED（按你实现约束决定是否限制）
-  - 拒绝：跳跃式流转（例如 PENDING->READY）
+- [x] **OrderTotal 计算**（单元测试）
+  - [x] items 合计：\u2211 price \u00d7 quantity
+  - [x] quantity 规则：必须为正整数
+  - [x] price 规则：来自服务端 Flavour 当前价格（不信任前端传入）
+  - [x] coupon 扩展点（如果暂不做 coupon：先写 TODO 测试用例占位即可）
+- [x] **订单状态机**（单元测试）
+  - [x] 允许：PENDING->PAID->PREPARING->READY->COMPLETED
+  - [x] 允许：任意状态 -> CANCELLED（按你实现约束决定是否限制）
+  - [x] 拒绝：跳跃式流转（例如 PENDING->READY）
 - **Webhook 幂等**（单元测试/轻集成测试）
   - 相同 payment/event 重放：只更新一次订单状态
   - 已 PAID 的订单再次收到 COMPLETED：不重复写入/不降级状态
@@ -228,26 +228,26 @@ PENDING -> PAID -> PREPARING -> READY -> COMPLETED
 CANCELLED
 ```
 
-- 订单创建：校验口味是否在售、价格、数量；计算 total；落库
-- Guest Checkout：允许匿名下单，仅收集 guestEmail/guestPhone
+- [x] 订单创建：校验口味是否在售、价格、数量；计算 total；落库
+- [x] Guest Checkout：允许匿名下单，仅收集 guestEmail/guestPhone
 
 ### 5.2 支付 API
 
-- `POST /api/orders`（创建订单）
-- `POST /api/orders/:id/pay`（创建 Square 支付，返回支付链接/支付信息）
-- `POST /api/orders/webhook`（处理 Square webhook，幂等更新订单为 PAID）
+- [x] `POST /api/orders`（创建订单）
+- [x] `POST /api/orders/:id/pay`（创建 Square 支付，返回支付链接/支付信息）
+- [x] `POST /api/orders/webhook`（处理 Square webhook，幂等更新订单为 PAID）
 
 Webhook 安全与幂等：
 
-- webhook 校验（签名/secret 至少一种）
-- 幂等处理（Redis 或 DB 约束）
+- [x] webhook 校验（签名/secret 至少一种）
+- [x] 幂等处理（Redis 或 DB 约束）
 
 ### 5.3 验收标准
 
 - Square Sandbox 配置完成
-- 能从后端创建支付并拿到可跳转链接
-- 完成支付后 webhook 能把订单状态更新为 PAID
-- 重复 webhook 不会造成重复写入/状态错乱
+- [x] 能从后端创建支付并拿到可跳转链接
+- [x] 完成支付后 webhook 能把订单状态更新为 PAID
+- [x] 重复 webhook 不会造成重复写入/状态错乱
 - 支付相关关键规则有测试覆盖（至少：状态机 + webhook 幂等）
 
 ---
@@ -256,38 +256,38 @@ Webhook 安全与幂等：
 
 ### 6.1 路由与页面
 
-- `/` 首页
-- `/flavours` 口味列表（公开）
-- `/flavours/:id` 口味详情（公开）
-- `/today` 今日供应（公开）
-- `/cart` 购物车（公开）
-- `/checkout` 结账（公开，支持 guest 填信息）
-- `/orders` 订单历史（登录）
-- `/profile` 个人中心（登录）
-- `/admin` 管理后台（Staff+）
-- `/login` 登录
+- [x] `/` 首页
+- [x] `/flavours` 口味列表（公开）
+- [x] `/flavours/:id` 口味详情（公开）
+- [x] `/today` 今日供应（公开）
+- [x] `/cart` 购物车（公开）
+- [x] `/checkout` 结账（公开，支持 guest 填信息）
+- [x] `/orders` 订单历史（登录）
+- [x] `/profile` 个人中心（登录）
+- [x] `/admin` 管理后台（Staff+）
+- [x] `/login` 登录
 
 ### 6.2 状态管理与数据请求
 
 Zustand：
 
-- `cartStore`：items + add/remove/updateQuantity/clear/getTotal
-- `authStore`：user/token + login/logout/refresh
+- [x] `cartStore`：items + add/remove/updateQuantity/clear/getTotal
+- [x] `authStore`：user/token + login/logout/refresh
 
 TanStack Query：
 
-- `useFlavours` / `useFlavour(id)` / `useTodayMenu`
-- `useCreateOrder` / `usePayOrder(orderId)` / `useOrders`
+- [x] `useFlavours` / `useFlavour(id)` / `useTodayMenu`
+- [x] `useCreateOrder` / `usePayOrder(orderId)` / `useOrders`
 
 Axios：
 
-- 统一 `services/api.ts`，请求拦截器自动带 token
+- [x] 统一 `services/api.ts`，请求拦截器自动带 token
 
 ### 6.3 关键用户流程验收
 
-- 浏览口味 → 加入购物车 → 结账 → 创建订单 → 去支付（跳 Square）
-- 支付完成后：能在订单历史/订单详情看到状态更新
-- 管理端：可 CRUD 口味、设置今日供应、更新订单状态
+- [x] 浏览口味 → 加入购物车 → 结账 → 创建订单 → 去支付（跳 Square）
+- [x] 支付完成后：能在订单历史/订单详情看到状态更新
+- [x] 管理端：可 CRUD 口味、设置今日供应、更新订单状态
 
 ---
 

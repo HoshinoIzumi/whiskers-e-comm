@@ -8,15 +8,15 @@
 
 ### MVP (Must-Have)
 
-- [ ] **Catalog browsing**: flavour list / detail / categories
-- [ ] **Today’s menu**: publicly accessible
-- [ ] **Cart**: add / remove / update quantity + price calculation
-- [ ] **Checkout**: create order (with Guest Checkout support)
-- [ ] **Payment (Square Sandbox)**: create payment / redirect to checkout / webhook updates order to PAID
-- [ ] **Basic admin (Staff+)**:
-  - [ ] Flavour CRUD
-  - [ ] Today’s menu management (toggle availability + sorting)
-  - [ ] Order list + status updates (PREPARING/READY/COMPLETED/CANCELLED)
+- [x] **Catalog browsing**: flavour list / detail / categories
+- [x] **Today’s menu**: publicly accessible
+- [x] **Cart**: add / remove / update quantity + price calculation
+- [x] **Checkout**: create order (with Guest Checkout support)
+- [x] **Payment (Square Sandbox)**: create payment / redirect to checkout / webhook updates order to PAID
+- [x] **Basic admin (Staff+)**:
+  - [x] Flavour CRUD
+  - [x] Today’s menu management (toggle availability + sorting)
+  - [x] Order list + status updates (PREPARING/READY/COMPLETED/CANCELLED)
 - [ ] **Deployment**: Docker + Nginx + Lightsail (with HTTPS)
 
 ### Non-MVP (Nice-to-Have / Later)
@@ -79,18 +79,18 @@ whiskers-e-comm/
 
 ### 3.1 Repo / Project Setup
 
-- [ ] Create directories: `whiskers-api/`, `whiskers-web-v2/`
-- [ ] Backend: init NestJS app
-- [ ] Frontend: init Vite React-TS app
-- [ ] Code quality: ESLint / Prettier / TypeScript config (frontend & backend)
-- [ ] Root `docker-compose.yml` (Postgres + Redis for dev)
+- [x] Create directories: `whiskers-api/`, `whiskers-web-v2/`
+- [x] Backend: init NestJS app
+- [x] Frontend: init Vite React-TS app
+- [x] Code quality: ESLint / Prettier / TypeScript config (frontend & backend)
+- [x] Root `docker-compose.yml` (Postgres + Redis for dev)
 
 ### 3.2 Acceptance Criteria
 
-- [ ] `docker compose up` starts Postgres & Redis successfully
-- [ ] Prisma can connect to the database
-- [ ] Backend responds on `/api/health`
-- [ ] Frontend dev server starts and shows a placeholder home page
+- [x] `docker compose up` starts Postgres & Redis successfully
+- [x] Prisma can connect to the database
+- [x] Backend responds on `/api/health`
+- [x] Frontend dev server starts and shows a placeholder home page
 
 ---
 
@@ -100,9 +100,9 @@ whiskers-e-comm/
 
 > Principle: **test core business rules before wiring up controllers**. Focus tests on areas that are error-prone and expensive to change: order totals, state machine, and webhook idempotency.
 
-- [ ] **Start with unit tests (service/domain layer)**:
-  - [ ] Order total calculation (with future coupon extension points)
-  - [ ] Order state machine (allowed / forbidden transitions)
+- [x] **Start with unit tests (service/domain layer)**:
+  - [x] Order total calculation (with future coupon extension points)
+  - [x] Order state machine (allowed / forbidden transitions)
   - [ ] Webhook idempotency (duplicate events do not cause duplicate updates or side effects)
 - [ ] **A few integration tests** (added before full payment integration):
   - [ ] Prisma + Postgres: create order / update status
@@ -110,79 +110,79 @@ whiskers-e-comm/
 
 ### 4.1 Prisma Schema Finalization & Migration
 
-- [ ] `User` (with `role` and `isActive`)
-- [ ] `Profile` (optional `phone` / `address`)
-- [ ] `Category` / `Flavour` (many-to-many)
-- [ ] `Menu` (today’s menu + sort order)
-- [ ] `Order` (optional `userId` + `guestEmail` / `guestPhone`)
-- [ ] `OrderItem`
-- [ ] `Coupon` (can be kept as structure-only during MVP)
-- [ ] `AuditLog`
+- [x] `User` (with `role` and `isActive`)
+- [x] `Profile` (optional `phone` / `address`)
+- [x] `Category` / `Flavour` (many-to-many)
+- [x] `Menu` (today’s menu + sort order)
+- [x] `Order` (optional `userId` + `guestEmail` / `guestPhone`)
+- [x] `OrderItem`
+- [x] `Coupon` (can be kept as structure-only during MVP)
+- [x] `AuditLog`
 
 Execution:
 
-- [ ] Initial migration: `prisma migrate dev` (document naming convention in README)
+- [x] Initial migration: `prisma migrate dev` (document naming convention in README)
 
 ### 4.2 Common Infrastructure
 
-- [ ] Unified error response: global exception filter
-- [ ] JWT guard: `JwtAuthGuard`
-- [ ] RBAC: `RolesGuard` + `@Roles()` (STAFF/ADMIN)
-- [ ] Swagger: auto-generated API docs (document how to access)
-- [ ] `PrismaService`: DB connection & lifecycle management
-- [ ] `AuditService`: log key operations into `AuditLog`
+- [x] Unified error response: global exception filter
+- [x] JWT guard: `JwtAuthGuard`
+- [x] RBAC: `RolesGuard` + `@Roles()` (STAFF/ADMIN)
+- [x] Swagger: auto-generated API docs (document how to access)
+- [x] `PrismaService`: DB connection & lifecycle management
+- [x] `AuditService`: log key operations into `AuditLog`
 
 ### 4.3 Auth Module (JWT)
 
 Routes aligned with `suggestion.md`:
 
-- [ ] `POST /api/auth/register`
-- [ ] `POST /api/auth/login`
-- [ ] `POST /api/auth/logout`
-- [ ] `GET /api/auth/me`
-- [ ] `POST /api/auth/refresh`
+- [x] `POST /api/auth/register`
+- [x] `POST /api/auth/login`
+- [x] `POST /api/auth/logout`
+- [x] `GET /api/auth/me`
+- [x] `POST /api/auth/refresh`
 
 Implementation notes:
 
-- [ ] Password hashing via bcrypt
-- [ ] Token refresh strategy (decide where to store refresh tokens: DB or Redis)
-- [ ] Role-based access control for admin / staff endpoints
+- [x] Password hashing via bcrypt
+- [x] Token refresh strategy (decide where to store refresh tokens: DB or Redis)
+- [x] Role-based access control for admin / staff endpoints
 
 ### 4.4 Flavours / Categories / Menu
 
 Flavours:
 
-- [ ] `GET /api/flavours` (public, with pagination / filters)
-- [ ] `GET /api/flavours/today` (public)
-- [ ] `GET /api/flavours/:id` (public)
-- [ ] `POST /api/flavours` (Staff+)
-- [ ] `PATCH /api/flavours/:id` (Staff+)
-- [ ] `DELETE /api/flavours/:id` (Staff+)
+- [x] `GET /api/flavours` (public, with pagination / filters)
+- [x] `GET /api/flavours/today` (public)
+- [x] `GET /api/flavours/:id` (public)
+- [x] `POST /api/flavours` (Staff+)
+- [x] `PATCH /api/flavours/:id` (Staff+)
+- [x] `DELETE /api/flavours/:id` (Staff+)
 
 Menu:
 
-- [ ] `GET /api/menu` (public)
-- [ ] `POST /api/menu` (Staff+, update full menu)
-- [ ] `PATCH /api/menu/today` (Staff+, mark today’s items)
+- [x] `GET /api/menu` (public)
+- [x] `POST /api/menu` (Staff+, update full menu)
+- [x] `PATCH /api/menu/today` (Staff+, mark today’s items)
 
 Redis usage (make explicit in implementation):
 
-- [ ] Cache today’s menu (high read / low write)
-- [ ] Invalidate cache on menu updates
+- [x] Cache today’s menu (high read / low write)
+- [x] Invalidate cache on menu updates
 
 ### 4.5 Admin
 
-- [ ] `GET /api/admin/users` (Admin)
-- [ ] `PATCH /api/admin/users/:id` (Admin)
-- [ ] `GET /api/admin/audit-logs` (Staff+, paginated)
+- [x] `GET /api/admin/users` (Admin)
+- [x] `PATCH /api/admin/users/:id` (Admin)
+- [x] `GET /api/admin/audit-logs` (Staff+, paginated)
 
 ### 4.6 Acceptance Criteria
 
-- [ ] Auth flow works (register / login / me / refresh)
-- [ ] Staff+ users can manage flavours (CRUD) and changes are logged in `AuditLog`
-- [ ] Today’s menu can be read and updated, with Redis cache in place
-- [ ] Admin user management works
-- [ ] Core business rules have unit tests (at minimum: order state machine + order total calculation)
+- [x] Auth flow works (register / login / me / refresh)
+- [x] Staff+ users can manage flavours (CRUD) and changes are logged in `AuditLog`
+- [x] Today’s menu can be read and updated, with Redis cache in place
+- [x] Admin user management works
+- [x] Core business rules have unit tests (at minimum: order state machine + order total calculation)
 
 ---
 
@@ -192,15 +192,15 @@ Redis usage (make explicit in implementation):
 
 > Goal: lock down the most critical, easy-to-break rules before wiring up Square webhooks, so you don’t debug rules and integration at the same time.
 
-- [ ] **OrderTotal calculation** (unit tests)
-  - [ ] Sum items: \(\sum price \times quantity\)
-  - [ ] Quantity: positive integers only
-  - [ ] Price: always use server-side flavour price (never trust client)
-  - [ ] Coupon extension (if not implemented yet: add TODO-style tests as placeholders)
-- [ ] **Order state machine** (unit tests)
-  - [ ] Allow: PENDING -> PAID -> PREPARING -> READY -> COMPLETED
-  - [ ] Allow: any -> CANCELLED (or restrict based on your design)
-  - [ ] Reject: invalid jumps (e.g. PENDING -> READY)
+- [x] **OrderTotal calculation** (unit tests)
+  - [x] Sum items: \(\sum price \times quantity\)
+  - [x] Quantity: positive integers only
+  - [x] Price: always use server-side flavour price (never trust client)
+  - [x] Coupon extension (if not implemented yet: add TODO-style tests as placeholders)
+- [x] **Order state machine** (unit tests)
+  - [x] Allow: PENDING -> PAID -> PREPARING -> READY -> COMPLETED
+  - [x] Allow: any -> CANCELLED (or restrict based on your design)
+  - [x] Reject: invalid jumps (e.g. PENDING -> READY)
 - [ ] **Webhook idempotency** (unit / light integration)
   - [ ] Same payment/event replay: only one state update
   - [ ] Payment for an already PAID order (COMPLETED again): no duplicate changes or downgrades
@@ -231,26 +231,26 @@ PENDING -> PAID -> PREPARING -> READY -> COMPLETED
 CANCELLED
 ```
 
-- [ ] Order creation: validate flavours are active & available, validate price & quantity, compute total, persist
-- [ ] Guest Checkout: allow anonymous orders with `guestEmail` / `guestPhone`
+- [x] Order creation: validate flavours are active & available, validate price & quantity, compute total, persist
+- [x] Guest Checkout: allow anonymous orders with `guestEmail` / `guestPhone`
 
 ### 5.2 Payment APIs
 
-- [ ] `POST /api/orders` (create order)
-- [ ] `POST /api/orders/:id/pay` (create Square payment, return checkout link / client details)
-- [ ] `POST /api/orders/webhook` (handle Square webhook, idempotently update order to PAID)
+- [x] `POST /api/orders` (create order)
+- [x] `POST /api/orders/:id/pay` (create Square payment, return checkout link / client details)
+- [x] `POST /api/orders/webhook` (handle Square webhook, idempotently update order to PAID)
 
 Webhook security & idempotency:
 
-- [ ] Webhook verification (signature or secret token at minimum)
-- [ ] Idempotency logic (via Redis or DB constraints)
+- [x] Webhook verification (signature or secret token at minimum)
+- [x] Idempotency logic (via Redis or DB constraints)
 
 ### 5.3 Acceptance Criteria
 
 - [ ] Square Sandbox is configured correctly
-- [ ] Backend can create a payment and return a valid redirect URL
-- [ ] After payment succeeds, webhook updates the order from PENDING to PAID
-- [ ] Replayed webhooks do not cause duplicate writes or inconsistent states
+- [x] Backend can create a payment and return a valid redirect URL
+- [x] After payment succeeds, webhook updates the order from PENDING to PAID
+- [x] Replayed webhooks do not cause duplicate writes or inconsistent states
 - [ ] Tests cover key payment rules (at least: state machine + webhook idempotency)
 
 ---
@@ -259,38 +259,38 @@ Webhook security & idempotency:
 
 ### 6.1 Routes & Pages
 
-- [ ] `/` Home
-- [ ] `/flavours` Flavour list (public)
-- [ ] `/flavours/:id` Flavour detail (public)
-- [ ] `/today` Today’s menu (public)
-- [ ] `/cart` Cart (public)
-- [ ] `/checkout` Checkout (public, with guest contact info)
-- [ ] `/orders` Order history (authenticated)
-- [ ] `/profile` Profile (authenticated)
-- [ ] `/admin` Admin dashboard (Staff+)
-- [ ] `/login` Login
+- [x] `/` Home
+- [x] `/flavours` Flavour list (public)
+- [x] `/flavours/:id` Flavour detail (public)
+- [x] `/today` Today’s menu (public)
+- [x] `/cart` Cart (public)
+- [x] `/checkout` Checkout (public, with guest contact info)
+- [x] `/orders` Order history (authenticated)
+- [x] `/profile` Profile (authenticated)
+- [x] `/admin` Admin dashboard (Staff+)
+- [x] `/login` Login
 
 ### 6.2 State Management & Data Fetching
 
 Zustand:
 
-- [ ] `cartStore`: items + add/remove/updateQuantity/clear/getTotal
-- [ ] `authStore`: user/token + login/logout/refresh
+- [x] `cartStore`: items + add/remove/updateQuantity/clear/getTotal
+- [x] `authStore`: user/token + login/logout/refresh
 
 TanStack Query:
 
-- [ ] `useFlavours` / `useFlavour(id)` / `useTodayMenu`
-- [ ] `useCreateOrder` / `usePayOrder(orderId)` / `useOrders`
+- [x] `useFlavours` / `useFlavour(id)` / `useTodayMenu`
+- [x] `useCreateOrder` / `usePayOrder(orderId)` / `useOrders`
 
 Axios:
 
-- [ ] Central `services/api.ts`, with request interceptor attaching auth token
+- [x] Central `services/api.ts`, with request interceptor attaching auth token
 
 ### 6.3 Key User Flows (Acceptance)
 
-- [ ] Browse flavours → add to cart → checkout → create order → redirect to Square
-- [ ] After payment, user can see updated order status in history / detail
-- [ ] Admin can: CRUD flavours, manage today’s menu, update order status
+- [x] Browse flavours → add to cart → checkout → create order → redirect to Square
+- [x] After payment, user can see updated order status in history / detail
+- [x] Admin can: CRUD flavours, manage today’s menu, update order status
 
 ---
 
@@ -326,7 +326,7 @@ Axios:
 
 ### 8.1 Testing
 
-- [ ] Backend: Jest unit tests (core business logic) + E2E (critical endpoints)
+- [x] Backend: Jest unit tests (core business logic) + E2E (critical endpoints)
 - [ ] Backend unit test coverage target: ≥ 85% overall, with highest priority on core rules (order totals, state machine, webhook idempotency).
 - [ ] Frontend: Playwright (critical user journeys)
 - [ ] API: Postman collection / Newman run (optional but great for interviews)
@@ -339,7 +339,7 @@ Axios:
 ### 8.3 Documentation
 
 - [ ] README: local setup, env vars, migrations, tests, deployment, architecture diagram
-- [ ] Swagger: how to access and use the API docs
+- [x] Swagger: how to access and use the API docs
 - [ ] Interview notes (optional but recommended): tech choices, trade-offs, and war stories (Square webhooks, idempotency, RBAC, caching)
 
 ---
